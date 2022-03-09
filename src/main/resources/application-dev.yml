@@ -1,5 +1,5 @@
 bot:
   telegram:
     api:
-      token: '5197396305:AAHiNyfJMqC-FE4K1VsvDfTIiEVaXnJdzGA'
-      user-name: 'ProgFather'
+      token: <BOT_TOKEN>
+      user-name: <BOT_USER_NAME>
