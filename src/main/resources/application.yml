@@ -1,5 +1,18 @@
 bot:
+  rabbitmq:
+    exchange: mq-exchange
+    queue: mq-queue
+    routing-key: mq-exchange-routing-key
   telegram:
     api:
       token: <BOT_TOKEN>
       user-name: <BOT_USER_NAME>
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest

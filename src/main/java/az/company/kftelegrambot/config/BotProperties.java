@@ -17,8 +17,7 @@ public class BotProperties extends TelegramLongPollingBot {
     private final String botUserName;
     private final String botToken;
 
-    @Autowired
-    private BotLoaderService botLoaderService;
+    private final BotLoaderService botLoaderService = new BotLoaderServiceImpl();
 
     public BotProperties(@Autowired(required = false) String botUserName,
                          @Autowired(required = false) String botToken) {

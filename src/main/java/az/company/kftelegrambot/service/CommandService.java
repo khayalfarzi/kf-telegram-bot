@@ -1,5 +1,6 @@
 package az.company.kftelegrambot.service;
 
+import az.company.kftelegrambot.service.func.ExecutableFunc;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
