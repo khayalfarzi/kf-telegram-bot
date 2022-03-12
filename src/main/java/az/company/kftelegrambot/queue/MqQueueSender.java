@@ -1,6 +1,5 @@
 package az.company.kftelegrambot.queue;
 
-import az.company.kftelegrambot.model.Demo;
 import az.company.kftelegrambot.model.exception.MqException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,12 +13,14 @@ import org.springframework.stereotype.Component;
 public class MqQueueSender<T> {
     private static final Logger log = LoggerFactory.getLogger(MqQueueSender.class);
 
-    private final RabbitTemplate rabbitTemplate;
-    private final ObjectMapper objectMapper;
-
     @Value("${bot.rabbitmq.routing-key}")
     private String queueRoutingKey;
 
+    @Value("${bot.rabbitmq.exchange}")
+    private String queueExchange;
+
+    private final RabbitTemplate rabbitTemplate;
+    private final ObjectMapper objectMapper;
 
     public MqQueueSender(RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
         this.rabbitTemplate = rabbitTemplate;
@@ -31,7 +32,7 @@ public class MqQueueSender<T> {
 
         try {
             String json = objectMapper.writeValueAsString(item);
-            rabbitTemplate.convertAndSend("demo-exchange", queueRoutingKey, json);
+            rabbitTemplate.convertAndSend(queueExchange, queueRoutingKey, json);
 
         } catch (JsonProcessingException e) {
             log.error("ActionLog.sendMessageToQueue: error.", e);

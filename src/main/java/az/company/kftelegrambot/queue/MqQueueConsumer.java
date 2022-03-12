@@ -1,9 +1,6 @@
 package az.company.kftelegrambot.queue;
 
-import az.company.kftelegrambot.model.exception.MqException;
 import az.company.kftelegrambot.service.MqListenerService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -25,7 +22,7 @@ public class MqQueueConsumer {
     public void receive(@Payload String fileBody) {
         log.info("ActionLog.receive: start.");
 
-        listenerService.send(fileBody);
+        listenerService.accept(fileBody);
 
         log.info("ActionLog.receive: end.");
     }

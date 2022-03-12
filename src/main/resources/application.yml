@@ -1,6 +1,6 @@
 bot:
   rabbitmq:
-    exchange: mq-exchange
+    exchange: direct-exchange
     queue: mq-queue
     routing-key: mq-exchange-routing-key
   telegram:

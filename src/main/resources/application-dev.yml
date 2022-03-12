@@ -1,4 +1,8 @@
 bot:
+  rabbitmq:
+    exchange: direct-exchange
+    queue: mq-queue
+    routing-key: mq-exchange-routing-key
   telegram:
     api:
       token: '5197396305:AAHiNyfJMqC-FE4K1VsvDfTIiEVaXnJdzGA'

@@ -1,8 +1,8 @@
 package az.company.kftelegrambot.service.impl;
 
-import az.company.kftelegrambot.model.Demo;
+import az.company.kftelegrambot.model.ManualHealthChecker;
 import az.company.kftelegrambot.model.exception.MqException;
-import az.company.kftelegrambot.queue.MqQueueConsumer;
+import az.company.kftelegrambot.model.telegram_queue.TgHealth;
 import az.company.kftelegrambot.service.MqListenerService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,17 +21,17 @@ public class MqListenerServiceImpl implements MqListenerService {
     }
 
     @Override
-    public void send(String json) {
+    public void accept(String json) {
+
         try {
-            System.out.println("Message " + json);
+            TgHealth item = objectMapper.readValue(json, TgHealth.class);
 
-            Demo item = objectMapper.readValue(json, Demo.class);
+//            ManualHealthChecker item = objectMapper.readValue(json, ManualHealthChecker.class);
 
-            log.debug("ActionLog.send: item {}", item);
-
+            log.info("ActionLog.accept: item {}", item);
         } catch (JsonProcessingException e) {
-            log.error("ActionLog.send: error.");
-            log.error("ActionLog.send: ", e);
+            log.error("ActionLog.accept: error.");
+            log.error("ActionLog.accept: ", e);
             throw new MqException("MQ_UNEXPECTED_EXCEPTION", e.getMessage());
         }
     }

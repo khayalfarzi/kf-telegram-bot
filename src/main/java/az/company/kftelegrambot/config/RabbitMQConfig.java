@@ -15,7 +15,7 @@ public class RabbitMQConfig {
     private static final String password = "guest";
 
     @Value("${bot.rabbitmq.queue}")
-    private String queueName;
+    private String queueName = "mq-queue";
 
     @Value("${bot.rabbitmq.exchange}")
     private String queueExchange;
@@ -39,7 +39,7 @@ public class RabbitMQConfig {
 
     @Bean
     DirectExchange exchange() {
-        return new DirectExchange("direct-exchange");
+        return new DirectExchange(queueExchange);
     }
 
     @Bean
