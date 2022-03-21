@@ -16,3 +16,9 @@ spring:
     port: 5672
     username: guest
     password: guest
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/kf_telegram_bot
+    username: postgres
+    password: root
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml

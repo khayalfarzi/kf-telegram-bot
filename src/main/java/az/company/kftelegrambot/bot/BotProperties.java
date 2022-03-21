@@ -1,10 +1,12 @@
 package az.company.kftelegrambot.bot;
 
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 import java.util.List;
 
+@Component
 public abstract class BotProperties extends TelegramLongPollingBot {
 
     private static final String botUserName = "ProgFather";

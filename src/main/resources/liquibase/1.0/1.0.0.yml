@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create Demo table
+      author: Khayal Farziyev
+      changes:
+        - createTable:
+            tableName: demo
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+
+            remarks: Demo table

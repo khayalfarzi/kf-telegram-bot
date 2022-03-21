@@ -3,18 +3,21 @@ package az.company.kftelegrambot.bot;
 import az.company.kftelegrambot.model.telegram_queue.TgHealth;
 import az.company.kftelegrambot.queue.MqQueueSender;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.util.List;
 
-@Service
+@Component
 public class BotExecutor extends BotProperties {
 
-    @Autowired
-    private MqQueueSender<TgHealth> sender;
+    private final MqQueueSender<Object> sender;
+
+    public BotExecutor(MqQueueSender<Object> sender) {
+        this.sender = sender;
+    }
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -34,16 +37,16 @@ public class BotExecutor extends BotProperties {
 
             sender.sendMessageToQueue(tgHealth);
 
-//            sendMessage.setText(update.getMessage().getFrom().getFirstName());
-//
-//            sendMessage.setChatId(String.valueOf(update.getMessage().getChatId()));
+            sendMessage.setText(text);
+
+            sendMessage.setChatId(String.valueOf(update.getMessage().getChatId()));
         }
 
-//        try {
-//            execute(sendMessage);
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
