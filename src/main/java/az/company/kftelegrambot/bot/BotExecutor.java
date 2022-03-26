@@ -2,7 +2,6 @@ package az.company.kftelegrambot.bot;
 
 import az.company.kftelegrambot.model.telegram_queue.TgHealth;
 import az.company.kftelegrambot.queue.MqQueueSender;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
